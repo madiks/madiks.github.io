@@ -29,14 +29,14 @@
 &lt;h3 id=&#34;个人信息&#34;&gt;个人信息&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;姓名：马迪&lt;/li&gt;
+&lt;li&gt;马迪/男／1991&lt;/li&gt;
 &lt;li&gt;学历：本科（2010-2014）&lt;/li&gt;
 &lt;li&gt;籍贯：陕西·西安&lt;/li&gt;
 &lt;li&gt;民族：汉&lt;/li&gt;
 &lt;li&gt;工作经验：3年&lt;/li&gt;
 &lt;li&gt;期望城市：北京&lt;/li&gt;
 &lt;li&gt;Github：&lt;a href=&#34;https://github.com/madiks&#34;&gt;https://github.com/madiks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Blog：&lt;a href=&#34;https://madiks.github.io/&#34;&gt;https://madiks.github.io/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Blog：&lt;a href=&#34;https://madiks.github.io&#34;&gt;https://madiks.github.io&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;技能清单&#34;&gt;技能清单&lt;/h3&gt;
@@ -47,7 +47,7 @@
 &lt;li&gt;Python，熟悉，写过scrapy爬虫，简单的spark数据处理程序还有一些脚本程序&lt;/li&gt;
 &lt;li&gt;Javascript／Node，熟悉，写过一些前端项目和简单的游戏&lt;/li&gt;
 &lt;li&gt;Redis，熟悉，工作中常用做缓存、队列、计数、加锁，MongoDB简单了解，用过&lt;/li&gt;
-&lt;li&gt;Oracle／MySQL，熟悉&lt;/li&gt;
+&lt;li&gt;Oracle／MySQL，熟悉，sql语句性能分析与优化&lt;/li&gt;
 &lt;li&gt;HTML/CSS，了解，能完全看懂可做修改，比较倾向于使用现成的框架和组件，自己从零搭建的话会缺乏美感&lt;/li&gt;
 &lt;li&gt;lua／openresty，了解，写过简单的项目&lt;/li&gt;
 &lt;/ul&gt;
@@ -57,21 +57,20 @@
 &lt;p&gt;爱阅读（北京）科技有限公司（2014.07-至今）&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;统计项目，基于用户行为日志计算报表系统需要的各种数据&lt;/li&gt;
-&lt;li&gt;中心书库项目，涉及所有图书的抓取、管理、推送&lt;/li&gt;
-&lt;li&gt;图书授权项目，将中心书库的书籍授权到第三方，针对不同的合作方编写接口&lt;/li&gt;
-&lt;li&gt;数据抓取项目，使用Python scrapy框架编写爬虫抓取数据&lt;/li&gt;
-&lt;li&gt;检测图书更新项目，因某合作方授权图书太多原有的PHP脚本太慢，所以使用Golang编写新脚本极大提升检测效率&lt;/li&gt;
-&lt;li&gt;openresty编写日志收集器，对数据做简单校验后扔进kafka&lt;/li&gt;
+&lt;li&gt;统计项目，实时统计公司各平台的访问、收入、下载等数据统计，基于MapReduce思想采用php多进程模型分维度统计计算&lt;/li&gt;
+&lt;li&gt;中心书库项目，涉及所有图书的抓取、管理、推送，定义了图书的标准XML结构，将版权方提供的内容需格式化成标准格式，由统一的接口入库。当作品出现更新后，会被检查更新模块标记为未抓取状态，然后异步触发抓取程序抓取内容&lt;/li&gt;
+&lt;li&gt;图书授权项目，将书库的书籍授权到第三方，针对不同的合作方编写接口&lt;/li&gt;
+&lt;li&gt;数据抓取项目，使用Python scrapy框架编写爬虫抓取第三方站点数据&lt;/li&gt;
+&lt;li&gt;检测图书更新项目，因某合作方授权图书太多原有的PHP脚本太慢，所以使用Golang编写新的检测程序极大提升检测效率&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&#34;工作三年自己的感悟&#34;&gt;工作三年自己的感悟&lt;/h3&gt;
+&lt;h3 id=&#34;工作感悟&#34;&gt;工作感悟&lt;/h3&gt;
 
 &lt;ul&gt;
 &lt;li&gt;英语非常重要，较好的英文水平有助于更快更好地学习新东西还能躲过很多翻译不良带来的陷阱&lt;/li&gt;
 &lt;li&gt;程序员最重要的是抽象能力和学习能力，不把自己局限在某一领域&lt;/li&gt;
 &lt;li&gt;代码是写给人看的，在任何时候代码的整洁性和可读性都是非常重要的&lt;/li&gt;
-&lt;li&gt;在工作中有什么想法或者收获一定要写下来，写作是思维的沉淀的，将原来心中抽象的概念化为实体进而可以更全面的观察问题，发现和弥补自己的缺漏和思维的不足，获得进步&lt;/li&gt;
+&lt;li&gt;在工作中有什么想法或者收获一定要写下来，写作是思维的沉淀的，将心中抽象的概念化为实体,进而可以更全面的观察，发现自己思维的不足，获得进步&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&#34;致谢&#34;&gt;致谢&lt;/h3&gt;
