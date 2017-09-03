@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Debug on Madiks&#39;s blog</title>
+    <link>https://madiks.github.io/tags/debug/</link>
+    <description>Recent content in Debug on Madiks&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 30 Dec 2014 21:10:40 +0800</lastBuildDate>
+    <atom:link href="https://madiks.github.io/tags/debug/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>php自定义Warning的输出信息</title>
+      <link>https://madiks.github.io/post/php-custom-warning-message/</link>
+      <pubDate>Tue, 30 Dec 2014 21:10:40 +0800</pubDate>
+      
+      <guid>https://madiks.github.io/post/php-custom-warning-message/</guid>
+      <description>
+
+&lt;h3 id=&#34;php自定义warning的输出信息&#34;&gt;php自定义Warning的输出信息&lt;/h3&gt;
+
+&lt;p&gt;前几天公司平台接入了新的合作商，数据抓取服务一直没问题，到今天有一本书一直报错，查看log发现Warning,出错是由于导致xml解析错误。想到输出一下具体的bookid和chapter_id来查看到底是哪本书哪个章节的问题。&lt;/p&gt;
+
+&lt;p&gt;直接想到的方案是try catch在出错的时候输出bookid和chapter_id,但是发现php try catch无法处理Warning错误，于是Google了php如何catch warning，在stackoverflow上找到了如下方法：
+&lt;a href=&#34;http://stackoverflow.com/questions/1241728/can-i-try-catch-a-warning&#34;&gt;http://stackoverflow.com/questions/1241728/can-i-try-catch-a-warning&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;大致是通过 set_error_handler来自定义处理Warning的方法，在其中抛出一个异常然后再try catch它输出bookid和chapter_id，基本照抄给的实例于是如下的代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;set_error_handler(function($errno, $errstr, $errfile, $errline, array $errcontext) {
+  // error was suppressed with the @-operator
+     if (0 === error_reporting()) {
+         return false;
+     }
+     throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+}, E_WARNING);
+try{
+  $chapter_content = simplexml_load_string($chaptercontent_xml);
+} catch (Exception $e) {
+    echo &amp;quot;Caught exception: bookid = $id , chapter_id = $chapter_id &amp;quot;,  $e-&amp;gt;getMessage(), &amp;quot;\n&amp;quot;;
+    exit();
+}
+restore_error_handler();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;解释：使用set_error_handler来接管warning的处理，在其回调函数中抛出一个Exception,然后就可以try catch了，最后调用restore_error_handler();来撤销你设置的error_handler从而使其不影响后续的代码。&lt;/p&gt;
+
+&lt;p&gt;思考：这样改完后确实得到了bookid和chapter_id，但是有没有别的更简单方法来实现，其实我最本质的需求就是要自定义输出的Warning消息使其在输出错误的时候带上bookid和chapter_id上面的方法虽然解决了这个问题但是绕了一个大圈。查看php手册上set_error_handler的详细用法发现：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;handler的第五个可选参数，errcontext， 是一个指向错误发生时活动符号表的 array。 也就是说，errcontext 会包含错误触发处作用域内所有变量的数组。 用户的错误处理程序不应该修改错误上下文（context）。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;我们在此处直接用errcontext直接输出要的信息即可，于是有了下面的代码：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;set_error_handler(function($errno, $errstr, $errfile, $errline, array $errcontext){
+  // error was suppressed with the @-operator
+  if (0 === error_reporting()) {
+     return false;
+  }
+  echo &amp;quot;Caught Waring:bookid=$errcontext[bookid],chapter_id=$errcontext[chapter_id] Waring Message:&amp;quot;,$errstr,&#39; in &#39;,$errfile,&#39; on line &#39;,$errline,&amp;quot;\n&amp;quot;;
+}, E_WARNING);
+$chapter_content = simplexml_load_string($chaptercontent_xml);
+restore_error_handler();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;解释：直接在set_error_handler组织和输出错误信息即可完成自定义Warning错误信息的输出，这样简单了很多，加上这段代码后以后如果出问题直接去log里面查找就可拿到所需的信息，定位到问题所在。&lt;/p&gt;
+
+&lt;p&gt;总结：在解决完一个问题是最好多想想这个问题的本质，有没有更好的解决方案，这才能不断进步。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
