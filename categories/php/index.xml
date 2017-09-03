@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Php on Madiks&#39;s blog</title>
+    <link>https://madiks.github.io/categories/php/</link>
+    <description>Recent content in Php on Madiks&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 23 Apr 2017 20:12:23 +0800</lastBuildDate>
+    <atom:link href="https://madiks.github.io/categories/php/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>PHP笔记</title>
+      <link>https://madiks.github.io/post/php-note/</link>
+      <pubDate>Sun, 23 Apr 2017 20:12:23 +0800</pubDate>
+      
+      <guid>https://madiks.github.io/post/php-note/</guid>
+      <description>
+
+&lt;h3 id=&#34;面向对象-oop&#34;&gt;面向对象 OOP&lt;/h3&gt;
+
+&lt;p&gt;面向对象程序设计（Object-Oriented Programming，OOP）是一种程序设计范性，同时也是一种程序开发方法。它将对象作为程序的基本单元，将程序和数据封装其中，以提代码的&lt;strong&gt;重用性&lt;/strong&gt;、&lt;strong&gt;灵活性&lt;/strong&gt;和&lt;strong&gt;可扩展性&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;面向对象的核心思想是对象、封装、可重用和可扩展性。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;类是对象的抽象组织，对象是类的具体存在。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;php对象的本质&#34;&gt;PHP对象的本质&lt;/h3&gt;
+
+&lt;p&gt;先看PHP5中变量的定义：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C&#34;&gt;#zend/zend.h
+
+typedef union _zvalue_value {
+    long lval; //整形
+    double dval; //浮点数
+    struct {
+        char *val;
+        int len;
+    } str; //字符串
+    HashTable *ht; //数组
+    zend_object_value obj; //对象
+} zvalue_value;
+
+struct _zval_struct {
+	/* Variable information */
+	zvalue_value value;		/* value */
+	zend_uint refcount__gc;
+	zend_uchar type;	/* active type */
+	zend_uchar is_ref__gc;
+};
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;从源码可知php对象的类型是zend_object_value，接下来看它是如何实现的：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-C&#34;&gt;#zend/zend.h
+
+typedef struct _zend_object {
+    zend_class_entry *ce; //类指针，指向对象对应的类
+    HashTable *properties; //存放对象的属性表
+    HashTable *guards; 
+    /* protects from __get/__set ... recursion */
+} zend_object;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;PHP对象：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;属性数组（哈希表）&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;类指针&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;类属性&lt;/li&gt;
+&lt;li&gt;静态属性&lt;/li&gt;
+&lt;li&gt;类常量&lt;/li&gt;
+&lt;li&gt;标准方法&lt;/li&gt;
+&lt;li&gt;魔术方法&lt;/li&gt;
+&lt;li&gt;自定义方法&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;对象也是一种普通的变量，不同的是其携带了对象的属性表和类的入口指针。&lt;/p&gt;
+
+&lt;p&gt;于是可以总结PHP中对象和类的概念以及二者之间的关系：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;类是定义一系列属性和操作的模版，而对象则把属性进行具体化，然后交给类处理&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
