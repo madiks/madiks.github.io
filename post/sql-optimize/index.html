@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>数据库与sql优化&middot; Madiks&#39;s blog</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="madiks">
+	<meta name="description" content="A programmer live in China, like writing and drawing.">
+	<meta name="keywords" content="programmer, blog, note">
+	<meta name="generator" content="Hugo 0.16" />
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="https://madiks.github.io/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://madiks.github.io/favicon.ico" type="image/x-icon">
+
+	<!-- RSS -->
+	
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+    <header class="site-header">
+	<div class="branding">
+		<a href="https://madiks.github.io/">
+		<img class="avatar" src="https://madiks.github.io/img/avatar.png" alt=""/>
+		</a>
+		<h1 class="site-title">
+			<a href="https://madiks.github.io/">Madiks&#39;s blog</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+	      	<li><a href="/about/"> About </a></li><li><a href="/resume/"> Resume </a></li>
+
+	      	<li>
+	<a href="https://madiks.github.io/" title="">
+		<i class="fa fa-fw fa-home"></i>
+	</a>
+</li>
+
+
+
+<li>
+	<a href="mailto:madisvs@gmail.com" title="Email">
+		<i class="fa fa-fw fa-envelope"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/madiks" title="GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+<li>
+	<a href="http://instagram.com/madisvs" title="Instagram">
+		<i class="fa fa-fw fa-instagram"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	    </ul>
+	</nav>
+</header>
+
+
+    <div class="content">
+    <article>
+		<header>
+			<h1 class="title">数据库与sql优化</h1>
+			<p class="meta">
+    November 26, 2016 &middot; 1 minute read
+
+    
+        &middot; Tags:
+            <a href="https://madiks.github.io/tags/database">database</a>
+            , <a href="https://madiks.github.io/tags/sql">sql</a>
+            
+</p>
+
+		</header>
+
+	<section class="post-content">
+		
+
+<h4 id="pdo">PDO</h4>
+
+<p>PDO提供一个数据访问的抽象层，意味着不管使用哪种数据库都可以用同样的一组API对数据进行操作，保证了可抽象性和访问接口的一致性。</p>
+
+<p>PDO提供了参数绑定和预编译的特性，参数绑定：数据过滤和安全，预编译：转义和软解析提速。</p>
+
+<h4 id="事务">事务</h4>
+
+<p>特性：原子性、一致性、独立性、持久性。MySQL中开启事务需要DB引擎的支持，如InnoDb.</p>
+
+<h4 id="数据库优化">数据库优化</h4>
+
+<p>分为两部分：sql语句优化和数据库服务器配置优化。</p>
+
+<p>sql语句优化：</p>
+
+<ol>
+<li><p>避免在列上进行运算，这样会导致索引实效。</p></li>
+
+<li><p>join时应该用小结果集驱动大结果集。同时把复杂的join查询查分成多个query。因为join多个表时，可能导致更多的锁定和堵塞。</p></li>
+
+<li><p>like模糊查询时注意避免使用%%。</p></li>
+
+<li><p>仅列出需要的字段对查询速度不会有明显影响，主要考虑节省内存。</p></li>
+
+<li><p>使用批量插入语句节省交互，</p></li>
+
+<li><p>limit基数较大时使用between（只在id是连续的情况下有效）。</p></li>
+
+<li><p>不要使用rand函数获取多条随机记录，建议先使用程序生成好随机数。</p></li>
+
+<li><p>避免使用NULL</p></li>
+
+<li><p>不要使用count(id)，使用count(*)/count(1)</p></li>
+
+<li><p>尽可能在索引中完成排序。</p></li>
+
+<li><p>使用执行计划（EXPLAIN）分析优化sql语句。</p></li>
+</ol>
+
+<h4 id="mysql的索引类型">MySQL的索引类型</h4>
+
+<p>索引是一种特殊的文件(InnoDB数据表上的索引是表空间的一个组成部分)，它们包含着对数据表里所有记录的引用指针。</p>
+
+<ol>
+<li>B-Tree索引</li>
+</ol>
+
+<p>在B树中，内部（非叶子）节点可以拥有可变数量的子节点（数量范围预先定义好）。当数据被插入或从一个节点中移除，它的子节点数量发生变化。为了维持在预先设定的数量范围内，内部节点可能会被连结或者分离。因为子节点数量有一定的允许范围，所以B树不需要像其他自平衡查找树那样频繁地重新保持平衡，但是由于节点没有被完全填充，可能浪费了一些空间。子节点数量的上界和下界依特定的实现而设置。例如，在一个2-3 B树（通常简称2-3树），每一个内部节点只能有2或3个子节点。</p>
+
+<p>在Ｂ+树，这些键值的拷贝被存储在内部节点；键值和记录存储在叶子节点；另外，一个叶子节点可以包含一个指针，指向另一个叶子节点以加速顺序存取。</p>
+
+<p>最常见的索引类型，基于B-Tree数据结构。B-Tree的基本思想是，所有值（被索引的列）都是排过序的，每个叶节点到跟节点距离相等。所以B-Tree适合用来查找某一范围内的数据，而且可以直接支持数据排序（ORDER BY）。但是当索引多列时，列的顺序特别重要，需要格外注意。InnoDB和MyISAM都支持B-Tree索引。InnoDB用的是一个变种B+Tree，而MyISAM为了节省空间对索引进行了压缩，从而牺牲了性能。</p>
+
+<ol>
+<li>Hash索引</li>
+</ol>
+
+<p>基于hash表。所以这种索引只支持精确查找，不支持范围查找，不支持排序。这意味着范围查找或ORDER BY都要依赖server层的额外工作。目前只有Memory引擎支持显式的hash索引（但是它的hash是nonunique的，冲突太多时也会影响查找性能）。Memory引擎默认的索引类型即是Hash索引，虽然它也支持B-Tree索引。</p>
+
+<ol>
+<li>Full-text索引</li>
+</ol>
+
+<p>主要用来查找文本中的关键字，而不是直接与索引中的值相比较。Full-text索引跟其它索引大不相同，它更像是一个搜索引擎，而不是简单的WHERE语句的参数匹配。你可以对某列分别进行full-text索引和B-Tree索引，两者互不冲突。Full-text索引配合MATCH AGAINST操作使用，而不是一般的WHERE语句加LIKE。可以在char、varchar或text类型的列上创建。</p>
+
+<h4 id="字段类型">字段类型</h4>
+
+<ul>
+<li>CHAR——字符。固定长度的字串，在右边补齐空格，达到指定的长度。支持从0到155个字符。搜索值时，后缀的空格将被删除。</li>
+<li>VARCHAR——可变长的字符。一个可变长度的字串，其中的后缀空格在存储值时被删除。支持从0到255字符</li>
+<li>TINYBLOB——微小的二进制对象。支持255个字符。需要长度+1字节的存储。与TINYTEXT一样，只不过搜索时是区分大小写的。(0.25KB)</li>
+<li>TINYTEXT——支持255个字符。要求长度+1字节的存储。与TINYBLOB一样，只不过搜索时会忽略大小写。(0.25KB)</li>
+<li>BLOB——二进制对象。支持65535个字符。需要长度+2字节的存储。 (64KB)</li>
+<li>TEXT——支持65535个字符。要求长度+2字节的存储。 (64KB)</li>
+</ul>
+
+<p>CHAR 类型的一个变体是 VARCHAR 类型。它是一种可变长度的字符串类型，并且也必须带有一个范围在 0-255 之间的指示器。</p>
+
+<p>CHAR 和 VARCHGAR 不同之处在于 MYSQL 数据库处理这个指示器的方式：CHAR 把这个大小视为值的大小，不长度不足的情况下就用空格补足。而 VARCHAR 类型把它视为最大值并且只使用存储字符串实际需要的长度（增加一个额外字节来存储字符串本身的长度,需要使用额外的1个或2个字节来记录字符串的长度，小于255 只使用一个字节，大于使用2个）来存储值。所以短于指示器长度的 VARCHAR 类型不会被空格填补，但长于指示器的值仍然会被截短。</p>
+
+<p>因为 VARCHAR 类型可以根据实际内容动态改变存储值的长度，所以在不能确定字段需要多少字符时使用 VARCHAR 类型可以大大地节约磁盘空间、提高存储效率。但如果确切知道字符串长度,比如就在50~55之间,那就用 CHAR 因为 CHAR 类型由于本身定长的特性使其性能要高于 VARCHAR。</p>
+
+<p>DATETIME 和 TIMESAMP</p>
+
+<ul>
+<li>都可以存储相同的数据，时间和日期</li>
+<li>TIMESAMP 只使用DATETIME一半的存储空间（4个字节与8个字节），并且根据时区变化，具有特殊的自动更新能力，但TIMESTAMP允许的时间范围小得多</li>
+<li>DATETIME 范围 1000-01-01 00:00:00 ~ 9999-12-31 23:59:59</li>
+<li>TIMESAMP 范围 1970-01-01 08:00:01到2038-01-19 11:14:07</li>
+<li>TIMESTAMP类型在默认情况下，insert、update 数据时，TIMESTAMP列会自动以当前时间（CURRENT_TIMESTAMP）填充/更新</li>
+<li>使用INT存时间戳在业务上不方便处理的情况下，不建议使用</li>
+</ul>
+
+<p>选择优化的数据类型：</p>
+
+<ul>
+<li>更小的数据类型通常更好,它们占用更小的磁盘，内存和CPU缓存，处理时需要的CPU周期更少</li>
+<li>简单就好,整型比字符操作代价更低，因为字符集和校对规则使字符比较整型比较更复杂</li>
+<li>尽量避免NULL，查询中包含可为NULL对MYSQL来说更难优化，因为可为NULL的列使得索引、索引统计和值 比较都较为复杂</li>
+</ul>
+
+<h4 id="数据库设计">数据库设计</h4>
+
+<p>数据库设计范式，粗略地理解为一张数据表的表结构所符合的某种设计标准的级别：</p>
+
+<p>第一范式，数据表中每一列都是不可分割的原子项数据且无重复的列。说明：属性不可分割。</p>
+
+<p>第二范式，如果依赖于主键，则需要依赖于所有主键，不能存在依赖部分主键的情况。第二范式就是要有主键，要求其他字段都依赖于主键。</p>
+
+<p>第三范式，属性不依赖于其它非主属性（不能依赖于非主键）。要消除传递依赖，方便理解，可以看做是“消除冗余”。</p>
+
+<p>范式强调数据库应该降低依赖、减少冗余、增强数据一致性。</p>
+
+<p>但是如今面临高并发，业务逻辑极其复杂，低延迟要求的情况，还一味固守范式是不适当的。适当降低范式、增加冗余，用空间换时间是值得的。</p>
+
+<p>数据库分区，就是把一张数据表的文件和索引分散存储在不同的物理文件中（甚至是硬盘中）。减少数据文件和索引文件的大小，大幅提升效率。</p>
+
+<p>分表，就是把原先的一张表分成几张表。进行分表查询时，可以union或者做一个视图。分表又分为垂直切分和水平切分，其中水平切分最为常用，具体可以按照用户id、时间、数据量、hash值等等来切分。（尽量按实际业务来分表，哪些字段在查询中起主要作用就按这些字段来分表）。</p>
+
+<h4 id="视图">视图</h4>
+
+<p>视图是一个虚拟表，其内容由查询定义。在MySQL中视图等价于依据sql查询语句，再处理视图时只是把视图展开成其定义的语句进行查询。</p>
+
+<h4 id="sql注入">SQL注入</h4>
+
+<p>通过构造特定的sql语句获取权限之外的数据。在原有的sql语句的基础上附加一段sql代码，构造特殊的sql语句，利用应用程序自身的权限实现所需要的操作。转义或过滤特殊字符即可防范。</p>
+
+	</section>
+    </div>
+
+    <footer class="site-footer">
+	<p class="text">&copy; 2017 - All rights reserved.<br>Powered by <a href="//gohugo.io/">Hugo</a> with the <a href="//github.com/digitalcraftsman/hugo-type-theme">Type Theme</a></p>
+</footer>
+
+
+</body>
+</html>
