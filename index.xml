@@ -6,8 +6,69 @@
     <description>Recent content on Madiks&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 23 Jul 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 07 Sep 2017 16:30:23 +0800</lastBuildDate>
     <atom:link href="https://madiks.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>记一次奇葩的面试经历</title>
+      <link>https://madiks.github.io/post/a-bizarre-job-interview/</link>
+      <pubDate>Thu, 07 Sep 2017 16:30:23 +0800</pubDate>
+      
+      <guid>https://madiks.github.io/post/a-bizarre-job-interview/</guid>
+      <description>&lt;p&gt;今天下午去某公司面试PHP岗位，经历比较奇葩，现将经历记录如下：&lt;/p&gt;
+
+&lt;p&gt;前天下午这家公司hr给我打电话说你通过了我们的简历筛选，问我什么时候有空过去面试，于是就约了后天下午两点半的面试。&lt;/p&gt;
+
+&lt;p&gt;今天下午两点二十我到了该公司，先从前台那领到了一张需要填写个人信息的表格，找了个地开始填表。把这张表摆在桌面上细一瞧，好家伙各种项目是列的事无巨细。从个人姓名、性别、身份证号、出生年月、籍贯、民族、政治面貌到手机号、邮箱、QQ号码、备用联系人、教育经历、获奖情况、工作年限、工作经历、上一份工作薪酬、薪酬证明人联系方式再到家庭成员关心、你爸你妈叫啥、父母年龄和工作等等信息。我自己都有点搞不清楚自己是来应聘后端程序员还是来参加政府的公务员考试的，好不容易花十多分钟填好交上去，然后等着面试。&lt;/p&gt;
+
+&lt;p&gt;我没带简历，得等hr打出简历来才能继续面试。等了大概二十来分钟，hr带着简历来了，面试开始，我跟hr的对话如下：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;hr：不好意思让您久等了，咱们开始吧。&lt;/li&gt;
+&lt;li&gt;我：好。&lt;/li&gt;
+&lt;li&gt;hr：你是陕西人？&lt;/li&gt;
+&lt;li&gt;我：对，陕西·西安的。&lt;/li&gt;
+&lt;li&gt;hr：工作三年了？&lt;/li&gt;
+&lt;li&gt;我：对，14年毕业的，刚好工作三年多。&lt;/li&gt;
+&lt;li&gt;hr：上份工作是校招还是社招的？&lt;/li&gt;
+&lt;li&gt;我：我在外地上的大学，毕业以后来北京自己找的工作。&lt;/li&gt;
+&lt;li&gt;hr：那介绍一下你的项目经历吧。&lt;/li&gt;
+&lt;li&gt;我：咱这是开始技术面试了吗？&lt;/li&gt;
+&lt;li&gt;hr：没有，现在是hr面。&lt;/li&gt;
+&lt;li&gt;我：哦，开始介绍项目经历，此处省略许多字。&lt;/li&gt;
+&lt;li&gt;hr：都用过什么PHP框架？&lt;/li&gt;
+&lt;li&gt;我：上架公司的项目用的是zend framework还有不用框架的项目，我自己还用过CI和laravel。&lt;/li&gt;
+&lt;li&gt;hr：没用过TP？&lt;/li&gt;
+&lt;li&gt;我：没用过，但是我感觉框架很快就能掌握所以没用过并不是问题。&lt;/li&gt;
+&lt;li&gt;hr：……，那你上家公司项目都用什么数据库？&lt;/li&gt;
+&lt;li&gt;我：Oracle，因为性能较好，能满足我们公司的业务量，后端业务逻辑不用太复杂。&lt;/li&gt;
+&lt;li&gt;hr：你们没用MySQL？&lt;/li&gt;
+&lt;li&gt;我：（尴尬），没用，不过我对MySQL也有一些了解。&lt;/li&gt;
+&lt;li&gt;hr：那你有做管理系统和电商系统的经验吗？&lt;/li&gt;
+&lt;li&gt;我：管理系统有，电商系统暂时没接触过。&lt;/li&gt;
+&lt;li&gt;hr：……，介绍一下这个项目（指着简历一个项目）。&lt;/li&gt;
+&lt;li&gt;我：这是我单独负责的一个爬虫项目，当时老大要抓取几个不同网站上的数据。我使用python Scrapy爬虫框架写的，抓取网页数据、整理、过滤、入库，另外的前端展示系统由其他同事负责，这项目其实比较简单。&lt;/li&gt;
+&lt;li&gt;hr：python写的（简历上写的python实现）？&lt;/li&gt;
+&lt;li&gt;我：对，是用python写的。&lt;/li&gt;
+&lt;li&gt;hr：（少做停顿），我大概了解了你的情况。我们们公司在薪酬方面还是还是不错的，只要技术能力够薪资可以给到很高。&lt;/li&gt;
+&lt;li&gt;我：（点头）。&lt;/li&gt;
+&lt;li&gt;hr：现在我们公司PHP这边要招两个初级和一个高级职位，部分后端改java了，所以PHP的职位数量有些压缩。&lt;/li&gt;
+&lt;li&gt;我：……（不详的预感）。&lt;/li&gt;
+&lt;li&gt;hr：高级PHP岗位是要求能独立设计项目，还要带小团队做需求。你这边三年经验虽然也能满足，但是我觉得你没有电商项目相关经验，可能不适合我们。所以不好意思，麻烦你跑一趟，祝你找到更好的公司。&lt;/li&gt;
+&lt;li&gt;我：……&lt;/li&gt;
+&lt;li&gt;我：……&lt;/li&gt;
+&lt;li&gt;我：……，那好，再见。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;整个过程不到二十分钟，还没我这等面试的时间久。连对方技术的面都没见着，我就被hr否了，感觉mmp。来回折腾三小时，您这是通知我过来现场筛选简历吧，越想越生气。我就给hr回了邮件：&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;希望你们写好招聘要求，做好简历筛选。技术都没面，被hr以工作经验不符拒绝，我大热天白跑一趟真的很烦。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;本来一肚子火，我在写邮件时还是保持了相当的克制。冷静下来觉得今天碰到这事有些搞笑，写点东西记录下来吧。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Resume</title>
@@ -43,12 +104,12 @@
 
 &lt;ul&gt;
 &lt;li&gt;PHP，熟练掌握，工作中主要使用语言，熟悉LNMP体系&lt;/li&gt;
-&lt;li&gt;Golang，熟悉，写过一些小工具&lt;/li&gt;
+&lt;li&gt;Golang，熟悉，写过一些工具类应用&lt;/li&gt;
 &lt;li&gt;Python，熟悉，写过scrapy爬虫，简单的spark数据处理程序还有一些脚本程序&lt;/li&gt;
 &lt;li&gt;Javascript／Node，熟悉，写过一些前端项目和简单的游戏&lt;/li&gt;
 &lt;li&gt;Redis，熟悉，工作中常用做缓存、队列、计数、加锁，MongoDB简单了解，用过&lt;/li&gt;
 &lt;li&gt;Oracle／MySQL，熟悉，sql语句性能分析与优化&lt;/li&gt;
-&lt;li&gt;HTML/CSS，了解，能完全看懂可做修改，比较倾向于使用现成的框架和组件，自己从零搭建的话会缺乏美感&lt;/li&gt;
+&lt;li&gt;HTML/CSS，熟悉，可搭建简单的项目，比较倾向于使用现成的前端框架和组件，自己缺乏设计感&lt;/li&gt;
 &lt;li&gt;lua／openresty，了解，写过简单的项目&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -57,12 +118,40 @@
 &lt;p&gt;爱阅读（北京）科技有限公司（2014.07-至今）&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;统计项目，实时统计公司各平台的访问、收入、下载等数据统计，基于MapReduce思想采用php多进程模型分维度统计计算&lt;/li&gt;
-&lt;li&gt;中心书库项目，涉及所有图书的抓取、管理、推送，定义了图书的标准XML结构，将版权方提供的内容需格式化成标准格式，由统一的接口入库。当作品出现更新后，会被检查更新模块标记为未抓取状态，然后异步触发抓取程序抓取内容&lt;/li&gt;
-&lt;li&gt;图书授权项目，将书库的书籍授权到第三方，针对不同的合作方编写接口&lt;/li&gt;
-&lt;li&gt;数据抓取项目，使用Python scrapy框架编写爬虫抓取第三方站点数据&lt;/li&gt;
-&lt;li&gt;检测图书更新项目，因某合作方授权图书太多原有的PHP脚本太慢，所以使用Golang编写新的检测程序极大提升检测效率&lt;/li&gt;
+&lt;li&gt;统计项目&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;实时统计公司各平台的访问、收入、下载等业务数据，基于MapReduce思想采用php多进程模型分维度统计计算，我负责添加新统计类型、维护和优化整个系统，并尝试使用Node重构整个计算程序。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;中心书库项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;涉及所有图书的抓取、管理、推送，定义了图书的标准XML结构，将版权方提供的内容需格式化成标准格式，由统一的接口入库。我负责新授权方的接入工作，处理图书抓取问题并对整个系统进行改进和优化。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用户行为日志跟踪项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;根据用户id实时提取用户的操作日志在前端界面做展示，用于用户分析和调试。我负责设计和实现整个项目，使用redis zset以用户操作的时间戳为score存储单个用户的所有日志，用另外一个zset以添加跟踪用户id的时间戳为score存储所有跟踪用户列表。日志处理进程对比跟踪列表的用户id往对应的zset中写入用户日志，另一个进程使用LRU原则，根据用户列表的对应时间戳删除旧的跟踪用户及其日志zset回收内存。前端使用ajax轮询实时更新日志，并还原上次轮询前的用户的使用状态。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;图书授权项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;书库的书籍授权到第三方，负责整个系统设计，针对不同的合作方编写接口，有的授权方需要主动推送内容而nginx的超时重试会导致多个fpm进程同时向对方接口添加图书，为进程简单加锁解决并发问题。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;数据抓取项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;使用Python scrapy框架编写爬虫抓取第三方站点数据同步至入库接口。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;检测图书更新项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;因某合作方授权图书太多原有的PHP脚本太慢，使用Golang编写新的检测程序利用其异步IO和并发特性增加API请求并发数，提升网络访问效率和检测效率。&lt;/p&gt;
 
 &lt;h3 id=&#34;工作感悟&#34;&gt;工作感悟&lt;/h3&gt;
 

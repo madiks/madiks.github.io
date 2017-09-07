@@ -43,12 +43,12 @@
 
 &lt;ul&gt;
 &lt;li&gt;PHP，熟练掌握，工作中主要使用语言，熟悉LNMP体系&lt;/li&gt;
-&lt;li&gt;Golang，熟悉，写过一些小工具&lt;/li&gt;
+&lt;li&gt;Golang，熟悉，写过一些工具类应用&lt;/li&gt;
 &lt;li&gt;Python，熟悉，写过scrapy爬虫，简单的spark数据处理程序还有一些脚本程序&lt;/li&gt;
 &lt;li&gt;Javascript／Node，熟悉，写过一些前端项目和简单的游戏&lt;/li&gt;
 &lt;li&gt;Redis，熟悉，工作中常用做缓存、队列、计数、加锁，MongoDB简单了解，用过&lt;/li&gt;
 &lt;li&gt;Oracle／MySQL，熟悉，sql语句性能分析与优化&lt;/li&gt;
-&lt;li&gt;HTML/CSS，了解，能完全看懂可做修改，比较倾向于使用现成的框架和组件，自己从零搭建的话会缺乏美感&lt;/li&gt;
+&lt;li&gt;HTML/CSS，熟悉，可搭建简单的项目，比较倾向于使用现成的前端框架和组件，自己缺乏设计感&lt;/li&gt;
 &lt;li&gt;lua／openresty，了解，写过简单的项目&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -57,12 +57,40 @@
 &lt;p&gt;爱阅读（北京）科技有限公司（2014.07-至今）&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;统计项目，实时统计公司各平台的访问、收入、下载等数据统计，基于MapReduce思想采用php多进程模型分维度统计计算&lt;/li&gt;
-&lt;li&gt;中心书库项目，涉及所有图书的抓取、管理、推送，定义了图书的标准XML结构，将版权方提供的内容需格式化成标准格式，由统一的接口入库。当作品出现更新后，会被检查更新模块标记为未抓取状态，然后异步触发抓取程序抓取内容&lt;/li&gt;
-&lt;li&gt;图书授权项目，将书库的书籍授权到第三方，针对不同的合作方编写接口&lt;/li&gt;
-&lt;li&gt;数据抓取项目，使用Python scrapy框架编写爬虫抓取第三方站点数据&lt;/li&gt;
-&lt;li&gt;检测图书更新项目，因某合作方授权图书太多原有的PHP脚本太慢，所以使用Golang编写新的检测程序极大提升检测效率&lt;/li&gt;
+&lt;li&gt;统计项目&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;实时统计公司各平台的访问、收入、下载等业务数据，基于MapReduce思想采用php多进程模型分维度统计计算，我负责添加新统计类型、维护和优化整个系统，并尝试使用Node重构整个计算程序。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;中心书库项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;涉及所有图书的抓取、管理、推送，定义了图书的标准XML结构，将版权方提供的内容需格式化成标准格式，由统一的接口入库。我负责新授权方的接入工作，处理图书抓取问题并对整个系统进行改进和优化。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用户行为日志跟踪项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;根据用户id实时提取用户的操作日志在前端界面做展示，用于用户分析和调试。我负责设计和实现整个项目，使用redis zset以用户操作的时间戳为score存储单个用户的所有日志，用另外一个zset以添加跟踪用户id的时间戳为score存储所有跟踪用户列表。日志处理进程对比跟踪列表的用户id往对应的zset中写入用户日志，另一个进程使用LRU原则，根据用户列表的对应时间戳删除旧的跟踪用户及其日志zset回收内存。前端使用ajax轮询实时更新日志，并还原上次轮询前的用户的使用状态。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;图书授权项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;书库的书籍授权到第三方，负责整个系统设计，针对不同的合作方编写接口，有的授权方需要主动推送内容而nginx的超时重试会导致多个fpm进程同时向对方接口添加图书，为进程简单加锁解决并发问题。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;数据抓取项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;使用Python scrapy框架编写爬虫抓取第三方站点数据同步至入库接口。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;检测图书更新项目&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;因某合作方授权图书太多原有的PHP脚本太慢，使用Golang编写新的检测程序利用其异步IO和并发特性增加API请求并发数，提升网络访问效率和检测效率。&lt;/p&gt;
 
 &lt;h3 id=&#34;工作感悟&#34;&gt;工作感悟&lt;/h3&gt;
 
