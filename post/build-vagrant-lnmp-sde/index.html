@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>从零搭建LNMP开发环境&middot; Madiks&#39;s blog</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="author" content="madiks">
+	<meta name="description" content="A programmer live in China, like writing and drawing.">
+	<meta name="keywords" content="programmer, blog, note">
+	<meta name="generator" content="Hugo 0.16" />
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="https://madiks.github.io/css/main.css">
+
+	<!--Favicon-->
+	<link rel="shortcut icon" href="https://madiks.github.io/favicon.ico" type="image/x-icon">
+
+	<!-- RSS -->
+	
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+</head>
+
+<body>
+    <header class="site-header">
+	<div class="branding">
+		<a href="https://madiks.github.io/">
+		<img class="avatar" src="https://madiks.github.io/img/avatar.png" alt=""/>
+		</a>
+		<h1 class="site-title">
+			<a href="https://madiks.github.io/">Madiks&#39;s blog</a>
+		</h1>
+	</div>
+	<nav class="site-nav">
+		<ul>
+	      	<li><a href="/about/"> About </a></li>
+
+	      	<li>
+	<a href="https://madiks.github.io/" title="">
+		<i class="fa fa-fw fa-home"></i>
+	</a>
+</li>
+
+
+
+<li>
+	<a href="mailto:madisvs@gmail.com" title="Email">
+		<i class="fa fa-fw fa-envelope"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/madiks" title="GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+<li>
+	<a href="http://instagram.com/madisvs" title="Instagram">
+		<i class="fa fa-fw fa-instagram"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	    </ul>
+	</nav>
+</header>
+
+
+    <div class="content">
+    <article>
+		<header>
+			<h3 class="title">从零搭建LNMP开发环境</h3>
+			<p class="meta">
+    September 27, 2017 &middot; 2 minute read
+
+    
+        &middot; Tags:
+            <a href="https://madiks.github.io/tags/dev">dev</a>
+            , <a href="https://madiks.github.io/tags/php">php</a>
+            
+</p>
+
+		</header>
+
+	<section class="post-content">
+		
+
+<p>在Mac从零搭建PHP7开发环境，由于我不想直接在本地环境下直接操作所以使用Vagrant+VirtualBox在虚拟机来搭建开发环境，这样可以不用考虑开发环境各种配置对于本机的影响。</p>
+
+<p>关于Vagrant可以参考这两篇文章：<a href="http://www.ituring.com.cn/article/131600">为什么要使用Vagrant</a>和<a href="https://segmentfault.com/a/1190000000264347">Vagrant使用简介</a>我就不多做解释了。</p>
+
+<p>如果你不想自己手动搭建整个环境可以直接使用<a href="https://github.com/laravel/homestead">Laravel Homestead</a>，这是由Laravel框架开发者提供的一个已搭建好的跨平台（Windows、 Mac、 Linux）的PHP开发环境，内置了如Nginx、PHP7、 MySQL、 Postgres、 Redis、 Memcached、 Node等服务，只需在Vagrant下载入box文件做到了开箱即用。</p>
+
+<p>绕了半天还是回归正题，从零搭建PHP7开发环境：</p>
+
+<h4 id="初始化虚拟环境">初始化虚拟环境</h4>
+
+<p>这里假设你已经在本机安装好了VirtualBox+Vagrant，进入自己的想要存放环境的目录并在终端下执行如下命令：</p>
+
+<pre><code class="language-bash">mkdir trusty64 &amp;&amp; cd trusty64 # 创建并进入存放虚拟机的目录
+vagrant init ubuntu/trusty64 # 使用Vagrant载入Ubuntu 14.04的box文件
+</code></pre>
+
+<p>上面的命令会从外网下载Ubuntu 14.04的box文件，所以会比较慢，需要耐心等待。执行成功后编辑trusty64目录下的Vagrantfile配置文件来修改一些虚拟机的配置。</p>
+
+<p>由于网络原因box文件的下载可能出错，所以我这里提供我已下载的<a href="http://pan.baidu.com/s/1o8wWWqQ">Vagrant Ubuntu 14.04 Box</a>文件给大家，可以直接在<code>trusty64</code>目录下使用如下命令载入:</p>
+
+<pre><code class="language-bash">vagrant box add phpdev ubuntu-trusty64-20170831.box
+vagrant init
+</code></pre>
+
+<h5 id="调整虚拟机配置">调整虚拟机配置</h5>
+
+<p>我习惯将配置文件中<code>config.vm.box_check_update = true</code>修改为<code>config.vm.box_check_update = false</code>，这样每次启动虚拟机就不会检查box文件是否有更新了。</p>
+
+<p>Vagrant 默认是使用端口映射方式将虚拟机的端口映射本地从而实现类似 <a href="http://localhost:80">http://localhost:80</a> 这种访问方式，我更喜欢以固定IP的方式访问虚拟机，修改配置：</p>
+
+<pre><code>config.vm.network :private_network, ip: &quot;192.168.99.64&quot;
+</code></pre>
+
+<p>这样启动虚拟机后我们就能用 192.168.99.64 访问这台机器了，你可以把IP改成其他地址，只要冲突就行。</p>
+
+<p>默认Vagrant是把当前目录即<code>trusty64</code>映射到虚拟机的<code>/vagrant</code>目录下，你可以改变这个配置：</p>
+
+<pre><code>config.vm.synced_folder '.', '/vagrant', disabled: true
+config.vm.synced_folder &quot;./PHPCode&quot; , &quot;/code&quot;, :mount_options =&gt; [&quot;dmode=777&quot;, &quot;fmode=666&quot;]
+</code></pre>
+
+<p>上面第一行关闭默认的目录映射，第二行将当前目录下的<code>PHPCode</code>映射到虚拟机的<code>/code</code>目录下。</p>
+
+<h5 id="启动虚拟机">启动虚拟机</h5>
+
+<pre><code class="language-bash">vagrant up # 启动虚拟机
+vagrant ssh # ssh登陆虚拟机
+</code></pre>
+
+<p>OK，现在咱们就有了一个纯净的Ubuntu 14.04的虚拟环境，接下来开始配置开发环境吧。</p>
+
+<h4 id="配置开发环境">配置开发环境</h4>
+
+<pre><code class="language-bash">sudo su # 切换为root用户
+</code></pre>
+
+<p>首先切换为root用户，因为后面有些安装步骤需要用到超级用户权限，我们在本地虚拟机配置开发环境对于安全性的要求没那么严格，所以这里直接切换成root用户减少麻烦。</p>
+
+<h5 id="安装nginx">安装Nginx</h5>
+
+<pre><code class="language-bash">apt-get update # 更新软件源
+apt-get install nginx
+</code></pre>
+
+<p>安装完成之后在本机直接访问<code>http://192.168.99.64/</code>，可以看到<code>Welcome to nginx!</code>的页面表示nginx安装成功。</p>
+
+<h4 id="编译安装php">编译安装PHP</h4>
+
+<pre><code class="language-bash">apt-get install build-essential libtool libpcre3 libpcre3-dev openssl libssl-dev
+apt-get install libxml2-dev libcurl4-gnutls-dev libjpeg-dev libpng-dev libmcrypt-dev libreadline6 libreadline6-dev libfreetype6-dev
+</code></pre>
+
+<p>安装一些编译要用到的包。</p>
+
+<pre><code class="language-bash">ln -s /lib/x86_64-linux-gnu/libssl.so.1.0.0 /usr/lib/libssl.so
+</code></pre>
+
+<p>解决缺少了openssl的问题。</p>
+
+<pre><code class="language-bash">tar zxvf php-7.1.9.tar.gz
+cd php-7.1.9
+</code></pre>
+
+<p>下载PHP7的源码包，并解压。</p>
+
+<pre><code class="language-bash">./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --enable-fpm --with-fpm-user=www-data --with-fpm-group=www-data --with-mysqli --with-pdo-mysql --with-iconv-dir --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --with-curl --enable-mbregex --enable-mbstring --with-mcrypt --enable-ftp --with-gd --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap --without-pear --with-gettext --disable-fileinfo --enable-maintainer-zts
+</code></pre>
+
+<p>配置PHP编译选项。</p>
+
+<pre><code class="language-bash">make # 编译
+make install # 安装
+</code></pre>
+
+<p>这样PHP将被安装到<code>/usr/local/php</code>目录，编辑<code>/etc/enviornment</code>， 将<code>/usr/local/php/bin</code>添加到<code>PATH</code> 变量，然后在终端执行<code>source /etc/environment</code>更新环境变量。</p>
+
+<pre><code class="language-bash">cp &lt;php-source-dir&gt;/php.ini-development /usr/local/php/etc/php.ini
+</code></pre>
+
+<p>配置php.ini文件。</p>
+
+<pre><code class="language-bash">php -v
+</code></pre>
+
+<p>验证PHP安装成功。</p>
+
+<h4 id="配置php-fpm">配置PHP-FPM</h4>
+
+<pre><code class="language-bash">cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
+cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf
+</code></pre>
+
+<p>拷贝创建FPM配置文件，并修改<code>/usr/local/php/etc/php-fpm.d/www.conf</code>部分配置如下：</p>
+
+<pre><code>; listen = 127.0.0.1:9000
+listen = /var/run/php-fpm.sock
+; unix socket
+
+listen.owner = www-data
+listen.group = www-data
+listen.mode = 0660
+</code></pre>
+
+<h5 id="初始化php-fpm服务脚本">初始化PHP-FPM服务脚本</h5>
+
+<pre><code class="language-bash">cp &lt;source-dir&gt;/sapi/fpm/init.d.php-fpm.in /etc/init.d/php-fpm
+chmod 755 /etc/init.d/php-fpm
+</code></pre>
+
+<p><a href="http://php.net/manual/en/install.fpm.php">FPM Installation and Configuration</a></p>
+
+<p>修改部分<code>/etc/init.d/php-fpm</code>为如下：</p>
+
+<pre><code>prefix=
+exec_prefix=
+php_fpm_BIN=/usr/local/php/sbin/php-fpm
+php_fpm_CONF=/usr/local/php/etc/php-fpm.conf
+php_fpm_PID=/var/run/php-fpm.pid
+</code></pre>
+
+<h5 id="启动php-fpm服务">启动PHP-FPM服务</h5>
+
+<pre><code class="language-bash">/etc/init.d/php-fpm start # start php-fpm
+# /etc/init.d/php-fpm stop
+# /etc/init.d/php-fpm reload
+</code></pre>
+
+<p>编辑<code>/etc/rc.local</code>文件，在开机启动中加入PHP-FPM服务：</p>
+
+<pre><code>/etc/init.d/php-fpm start
+···
+exit 0
+</code></pre>
+
+<p>至此PHP-FPM配置成功。</p>
+
+<h4 id="创建phpinfo-脚本">创建phpinfo()脚本</h4>
+
+<pre><code class="language-bash">vim /etc/nginx/sites-available/trusty64
+ln -s /etc/nginx/sites-available/trusty64 /etc/nginx/sites-enabled/
+</code></pre>
+
+<p>创建Nginx虚拟主机配置文件，并在中输入一下内容：</p>
+
+<pre><code class="language-nginx">server {
+        listen 80;
+        server_name trusty64.local; # 设置域名
+        charset UTF-8;
+        # 配置访问日志和错误日志
+        access_log /var/log/trusty64-access.log;
+        error_log /var/log/trusty64-error.log;
+        # 站点根目录
+        root /code/www/trusty64/public;
+
+        index index.php index.html;
+
+        location = /favicon.ico {
+                log_not_found off;
+                access_log off;
+        }
+
+        location ~ \.php$ {
+                #fastcgi_pass   127.0.0.1:9000;
+                fastcgi_pass   unix:/var/run/php-fpm.sock;
+                fastcgi_index  index.php;
+                fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                fastcgi_read_timeout 5000;
+                include        fastcgi_params;
+        }
+
+        location ~ /\.ht {
+                deny all;
+        }
+
+        # Prevents caching of css/less/js/images, only use this in development
+        location ~* \.(css|less|js|jpg|png|gif)$ {
+                add_header Cache-Control &quot;no-cache, no-store, must-revalidate&quot;; 
+                add_header Pragma &quot;no-cache&quot;;
+                expires 0;
+        }
+
+}
+</code></pre>
+
+<p>在虚拟机<code>/code/www/trusty64/public</code>目录（位于映射的共享目录下）下创建<code>index.php</code>，输入一下内容：</p>
+
+<pre><code class="language-php">&lt;?php
+    phpinfo();
+</code></pre>
+
+<p>重启nginx，使配置的虚拟主机生效</p>
+
+<pre><code class="language-bash">service nginx restart #
+</code></pre>
+
+<p>修改本机（不是虚拟机）的<code>/etc/hosts</code>文件添加<code>trusty64.local</code>的域名解析：</p>
+
+<pre><code>192.168.99.64 trusty64.local
+</code></pre>
+
+<p>打开本机浏览器访问<code>http://trusty64.local/</code>可以看到<code>phpinfo()</code>的输出，Nginx+PHP-FPM的开发环境已配置成功。</p>
+
+<h4 id="安装mysql">安装Mysql</h4>
+
+<pre><code class="language-bash">apt-get install mysql-server mysql-client
+</code></pre>
+
+<p>注意在提示时输入root密码，安装完成后登陆Mysql为本机配置数据库访问权限。</p>
+
+<p>修改Mysql配置文件：</p>
+
+<pre><code class="language-bash">vim /etc/mysql/my.cnf
+# 把bind-address参数的值改成你的内/外网IP或0.0.0.0,或者直接注释掉这行.
+# 重启Mysql使配置生效
+service mysql stop
+service mysql start
+</code></pre>
+
+<p>登陆Mysql为本机IP添加访问权限。</p>
+
+<pre><code class="language-bash">mysql -u root -p
+
+mysql&gt; use mysql;
+mysql&gt; update user set host='192.168.99.1' where user='root';
+mysql&gt; flush privileges;
+mysql&gt; select user,host from user;
+</code></pre>
+
+<p>然后就可以直接使用本机的数据库管理工具如<code>Navicat</code>连接<code>192.168.99.64</code>访问和管理虚拟机上的Mysql。</p>
+
+<h4 id="总结">总结</h4>
+
+<p>至此我们在Vagrant的Ubuntu 14.04下搭建了LNMP的开发环境，可以在本机上直接编辑映射的共享目录下的脚本文件，通过虚拟来进行测试，做到开发与测试环境隔离，不必担心在本地搭建过多的服务引起的混乱。</p>
+
+	</section>
+
+	<div id="gitalk-container"></div>
+	<script type="text/javascript">
+		var gitalk = new Gitalk({
+		  clientID: '064268545abc46ab955b',
+		  clientSecret: 'a1d7a68f4efd2f19233a4f69620da55a6a3dedf9',
+		  repo: 'madiks.github.io',
+		  owner: 'madiks',
+		  admin: ['madiks'],
+		  distractionFreeMode: true
+		});
+		gitalk.render('gitalk-container');
+	</script>
+    </div>
+
+    <footer class="site-footer">
+	<p class="text">&copy; 2017 - All rights reserved.<br>Powered by <a href="//gohugo.io/">Hugo</a> with the <a href="//github.com/digitalcraftsman/hugo-type-theme">Type Theme</a></p>
+</footer>
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-106075670-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+</body>
+</html>

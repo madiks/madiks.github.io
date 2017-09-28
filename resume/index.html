@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 </head>
 
 <body>
@@ -41,7 +43,7 @@
 	</div>
 	<nav class="site-nav">
 		<ul>
-	      	<li><a href="/about/"> About </a></li><li><a href="/resume/"> Resume </a></li>
+	      	<li><a href="/about/"> About </a></li>
 
 	      	<li>
 	<a href="https://madiks.github.io/" title="">
@@ -140,7 +142,7 @@
 <h3 id="技能清单">技能清单</h3>
 
 <ul>
-<li>PHP，熟练掌握，工作中主要使用语言，熟悉LNMP体系</li>
+<li>PHP，熟练掌握，了解底层实现，工作中主要使用语言，熟悉LNMP体系</li>
 <li>Golang，熟悉，写过一些工具类应用</li>
 <li>Python，熟悉，写过scrapy爬虫，简单的spark数据处理程序还有一些脚本程序</li>
 <li>Javascript／Node，熟悉，写过一些前端项目和简单的游戏</li>
@@ -204,6 +206,19 @@
 <p>感谢您花时间阅读我的简历，期待能有机会和您共事。</p>
 
 	</section>
+
+	<div id="gitalk-container"></div>
+	<script type="text/javascript">
+		var gitalk = new Gitalk({
+		  clientID: '064268545abc46ab955b',
+		  clientSecret: 'a1d7a68f4efd2f19233a4f69620da55a6a3dedf9',
+		  repo: 'madiks.github.io',
+		  owner: 'madiks',
+		  admin: ['madiks'],
+		  distractionFreeMode: true
+		});
+		gitalk.render('gitalk-container');
+	</script>
     </div>
 
     <footer class="site-footer">

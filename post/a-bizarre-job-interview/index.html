@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 </head>
 
 <body>
@@ -41,7 +43,7 @@
 	</div>
 	<nav class="site-nav">
 		<ul>
-	      	<li><a href="/about/"> About </a></li><li><a href="/resume/"> Resume </a></li>
+	      	<li><a href="/about/"> About </a></li>
 
 	      	<li>
 	<a href="https://madiks.github.io/" title="">
@@ -109,7 +111,7 @@
     <div class="content">
     <article>
 		<header>
-			<h2 class="title">记一次奇葩的面试经历</h2>
+			<h3 class="title">记一次奇葩的面试经历</h3>
 			<p class="meta">
     September 7, 2017 &middot; 1 minute read
 
@@ -178,6 +180,19 @@
 <p>本来一肚子火，我在写邮件时还是保持了相当的克制。冷静下来觉得今天碰到这事有些搞笑，写点东西记录下来吧。</p>
 
 	</section>
+
+	<div id="gitalk-container"></div>
+	<script type="text/javascript">
+		var gitalk = new Gitalk({
+		  clientID: '064268545abc46ab955b',
+		  clientSecret: 'a1d7a68f4efd2f19233a4f69620da55a6a3dedf9',
+		  repo: 'madiks.github.io',
+		  owner: 'madiks',
+		  admin: ['madiks'],
+		  distractionFreeMode: true
+		});
+		gitalk.render('gitalk-container');
+	</script>
     </div>
 
     <footer class="site-footer">

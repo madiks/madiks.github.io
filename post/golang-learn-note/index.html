@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 </head>
 
 <body>
@@ -41,7 +43,7 @@
 	</div>
 	<nav class="site-nav">
 		<ul>
-	      	<li><a href="/about/"> About </a></li><li><a href="/resume/"> Resume </a></li>
+	      	<li><a href="/about/"> About </a></li>
 
 	      	<li>
 	<a href="https://madiks.github.io/" title="">
@@ -109,7 +111,7 @@
     <div class="content">
     <article>
 		<header>
-			<h2 class="title">Golang学习笔记</h2>
+			<h3 class="title">Golang学习笔记</h3>
 			<p class="meta">
     May 3, 2017 &middot; 1 minute read
 
@@ -237,6 +239,19 @@
 <p>单元测试用来测试逻辑算法是否符合预期外，还承担着监控代码质量的责任。代码验收和修改后的测试。</p>
 
 	</section>
+
+	<div id="gitalk-container"></div>
+	<script type="text/javascript">
+		var gitalk = new Gitalk({
+		  clientID: '064268545abc46ab955b',
+		  clientSecret: 'a1d7a68f4efd2f19233a4f69620da55a6a3dedf9',
+		  repo: 'madiks.github.io',
+		  owner: 'madiks',
+		  admin: ['madiks'],
+		  distractionFreeMode: true
+		});
+		gitalk.render('gitalk-container');
+	</script>
     </div>
 
     <footer class="site-footer">
