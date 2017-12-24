@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
-  <url>
-    <loc>https://madiks.github.io/</loc>
-    <lastmod>2017-09-27T21:22:14+08:00</lastmod>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
     <loc>https://madiks.github.io/post/build-vagrant-lnmp-sde/</loc>
@@ -74,6 +70,173 @@
   <url>
     <loc>https://madiks.github.io/post/internship-at-startups/</loc>
     <lastmod>2014-03-22T21:12:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/</loc>
+    <lastmod>2017-09-07T16:30:23+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/categories/database/</loc>
+    <lastmod>2016-11-26T23:12:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/database/</loc>
+    <lastmod>2016-11-26T23:12:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/debug/</loc>
+    <lastmod>2014-12-30T21:10:40+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/dev/</loc>
+    <lastmod>2017-09-27T21:22:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/categories/golang/</loc>
+    <lastmod>2017-05-03T15:10:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/golang/</loc>
+    <lastmod>2017-05-03T15:10:47+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/categories/interview/</loc>
+    <lastmod>2017-09-07T16:30:23+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/interview/</loc>
+    <lastmod>2017-09-07T16:30:23+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/learn/</loc>
+    <lastmod>2017-05-22T23:32:11+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/categories/life/</loc>
+    <lastmod>2017-06-26T22:32:33+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/</loc>
+    <lastmod>2017-09-27T21:22:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/note/</loc>
+    <lastmod>2017-06-28T21:12:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/oop/</loc>
+    <lastmod>2016-05-23T20:12:23+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/categories/photography/</loc>
+    <lastmod>2017-06-28T21:12:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/categories/php/</loc>
+    <lastmod>2017-09-27T21:22:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/php/</loc>
+    <lastmod>2017-09-27T21:22:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/post/</loc>
+    <lastmod>2017-09-27T21:22:14+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/resume/</loc>
+    <lastmod>2017-07-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/sql/</loc>
+    <lastmod>2016-11-26T23:12:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/</loc>
+    <lastmod>2017-09-07T16:30:23+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/%E5%AE%9E%E4%B9%A0/</loc>
+    <lastmod>2014-03-22T21:12:41+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/%E6%84%9F%E6%82%9F/</loc>
+    <lastmod>2017-06-26T22:32:33+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/%E6%88%90%E9%95%BF/</loc>
+    <lastmod>2017-06-26T22:32:33+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/%E6%91%84%E5%BD%B1/</loc>
+    <lastmod>2017-06-28T21:12:13+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/%E7%8E%AF%E5%A2%83/</loc>
+    <lastmod>2017-06-26T22:32:33+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/tags/%E7%94%9F%E6%B4%BB/</loc>
+    <lastmod>2015-01-17T10:32:11+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>

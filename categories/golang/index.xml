@@ -6,8 +6,11 @@
     <description>Recent content in Golang on Madiks&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <copyright>All rights reserved.&lt;br&gt;Powered by [Hugo](//gohugo.io/) with the [Type Theme](//github.com/digitalcraftsman/hugo-type-theme)</copyright>
     <lastBuildDate>Wed, 03 May 2017 15:10:47 +0800</lastBuildDate>
-    <atom:link href="https://madiks.github.io/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://madiks.github.io/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Golang学习笔记</title>
@@ -15,119 +18,26 @@
       <pubDate>Wed, 03 May 2017 15:10:47 +0800</pubDate>
       
       <guid>https://madiks.github.io/post/golang-learn-note/</guid>
-      <description>
-
-&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
-
-&lt;p&gt;阅读&lt;a href=&#34;https://github.com/qyuhen&#34;&gt;雨痕大神&lt;/a&gt;的《Go语言学习笔记》对自己知识查漏补缺做的笔记。&lt;/p&gt;
-
-&lt;h3 id=&#34;类型-type&#34;&gt;类型 Type&lt;/h3&gt;
-
-&lt;p&gt;变量（variable）是一段或者多段用来存储数据的内存，类型决定了变量&lt;strong&gt;内存的长度&lt;/strong&gt;和&lt;strong&gt;存储格式&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;p&gt;常量（constant）表示运行时恒定不可改变的值，使用常量的主要目的有：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;用一个易于阅读和理解的标识符来代替程序中的“魔法数字”&lt;/li&gt;
-&lt;li&gt;在需要调整常量值的时候，无需修改所有引用代码&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Go语言变量类型分为&lt;strong&gt;值类型&lt;/strong&gt;和&lt;strong&gt;引用类型&lt;/strong&gt;，Golang引用类型（reference type）特指slice、map、channel这三种预定义类型。&lt;/p&gt;
-
-&lt;p&gt;内置函数new按指定类型长度分配零值内存，返回指针。并不关心类型的内部构造和初始化方式。而引用类型则必须使用make函数创建，编译器会将make转换为目标类型专用的创建函数（或指令），以确保完成全部内存分配和相关属性的初始化。&lt;/p&gt;
-
-&lt;p&gt;当然new函数也可以为引用类型分配内存，但这是&lt;strong&gt;不完整创建&lt;/strong&gt;。以字典（dict）为例，new仅仅分配了字典类型本身（实际就是一个指针包装）所需内存，并没有分配键值对的存储内存，没有初始化散列桶的内部属性，因此它无法正常工作。&lt;/p&gt;
-
-&lt;p&gt;自增、自减不再是运算符。只能作为独立语句，不能用于表达式。&lt;/p&gt;
-
-&lt;p&gt;指针（pointer）与内存地址是不同的，内存地址是内存中每个字节单元的唯一编号，而指针则是一个实体。指针会分配内存空间，相当于一个专门用来保存地址的整型变量。&lt;/p&gt;
-
-&lt;h3 id=&#34;函数-function&#34;&gt;函数 Function&lt;/h3&gt;
-
-&lt;p&gt;函数：结构化编程的最小模块单元。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;逻辑划分、抽象、任务分解&lt;/li&gt;
-&lt;li&gt;代码复用&lt;/li&gt;
-&lt;li&gt;方便测试&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;函数调用前，会为形参和返回值分配内存空间，并将实参拷贝至形参的内存。&lt;/p&gt;
-
-&lt;p&gt;闭包（closure）是在其词法上下文引用了自由变量的函数，或者说是函数和其引用的环境的组合体。正因为闭包通过指针引用环境中的变量，那么可能导致其生命周期延长，甚至被分配到堆内存。&lt;/p&gt;
-
-&lt;h3 id=&#34;数据-data&#34;&gt;数据 Data&lt;/h3&gt;
-
-&lt;p&gt;字符串是不可变字节（byte）序列，其本身是一个复合结构。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;type stringStruct struct {
-    str unsafe.Pointer
-    len int
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;动态构建字符串容易引起性能问题，因为字符串是不可变字节（byte）序列，在用加法操作法拼接字符串时，每次都须重新分配内存。改进思路是预分配足够的内存。可以使用&lt;code&gt;strings.Join&lt;/code&gt;函数或者使用&lt;code&gt;bytes.Buffer&lt;/code&gt;与分配内存空间。&lt;/p&gt;
-
-&lt;p&gt;切片（slice）本身并非动态数组或数组指针。它内部通过指针引用底层数组，设定相关属性将数据读写操作限定在制定区域内。切片本身只是一个只读对象，其工作机制类似于数组指针的一种包装。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-Go&#34;&gt;type slice struct {
-    array unsafe.Pointer
-    len int
-    cap int
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;字典（Dict）是无须键值对集合，是迭代安全的，不是并发安全的。&lt;/p&gt;
-
-&lt;p&gt;结构体（struct）将多个不同类型的命名字段（field）序列打包成一个复合类型。&lt;/p&gt;
-
-&lt;h3 id=&#34;方法-method&#34;&gt;方法 Method&lt;/h3&gt;
-
-&lt;p&gt;方法是与对象实例绑定的特殊函数。receiver的类型可以是基础类型或者指针类型，主要关系到调用对象时对象实例是否会被复制。&lt;/p&gt;
-
-&lt;p&gt;receiver类型的选择：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;大对象建议用*T，以减少复制成本。&lt;/li&gt;
-&lt;li&gt;引用类型、字符串、函数等指针包装对象，直接用T&lt;/li&gt;
-&lt;li&gt;若包含Mutex等同步字段，用*T，避免因复制造成的锁失效。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;接口-interface&#34;&gt;接口 Interface&lt;/h3&gt;
-
-&lt;p&gt;接口代表一种调用契约，是多个方法声明的集合。&lt;/p&gt;
-
-&lt;h3 id=&#34;并发-concurrency&#34;&gt;并发 Concurrency&lt;/h3&gt;
-
-&lt;p&gt;关键字go创建一个并发任务单元。新建任务被放置在系统队列中，等待调度器安排合适的系统线程去执行。&lt;/p&gt;
-
-&lt;p&gt;通道 Channel&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;传输数据&lt;/li&gt;
-&lt;li&gt;事件通知&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;goroutine leak是指goroutine处于发送或接收阻塞状态，但一直未被唤醒。垃圾回收器并不收集此类资源，导致它们会在等待队列里长久休眠，形成资源泄漏。&lt;/p&gt;
-
-&lt;p&gt;通道channel和锁lock有各自不同的使用场景。通道倾向于解决逻辑层次的并发处理架构，而锁则用来保护局部范围内的数据安全。&lt;/p&gt;
-
-&lt;h3 id=&#34;包结构&#34;&gt;包结构&lt;/h3&gt;
-
-&lt;p&gt;内部包 Internal&lt;/p&gt;
-
-&lt;p&gt;内部包机制相当于增加了新的访问权限控制：所有保存在internal目录下的包（包括自身）仅能被其父目录下的包（含所有层次的子目录）访问。&lt;/p&gt;
-
-&lt;p&gt;依赖管理：vendor&lt;/p&gt;
-
-&lt;h3 id=&#34;反射-reflect&#34;&gt;反射 Reflect&lt;/h3&gt;
-
-&lt;p&gt;反射让我们能在运行期探知对象的类型信息和内存结构。&lt;/p&gt;
-
-&lt;h3 id=&#34;测试-test&#34;&gt;测试 Test&lt;/h3&gt;
-
-&lt;p&gt;单元测试用来测试逻辑算法是否符合预期外，还承担着监控代码质量的责任。代码验收和修改后的测试。&lt;/p&gt;
-</description>
+      <description>Introduction 阅读雨痕大神的《Go语言学习笔记》对自己知识查漏补缺做的笔记。
+类型 Type 变量（variable）是一段或者多段用来存储数据的内存，类型决定了变量内存的长度和存储格式。
+常量（constant）表示运行时恒定不可改变的值，使用常量的主要目的有：
+ 用一个易于阅读和理解的标识符来代替程序中的“魔法数字” 在需要调整常量值的时候，无需修改所有引用代码  Go语言变量类型分为值类型和引用类型，Golang引用类型（reference type）特指slice、map、channel这三种预定义类型。
+内置函数new按指定类型长度分配零值内存，返回指针。并不关心类型的内部构造和初始化方式。而引用类型则必须使用make函数创建，编译器会将make转换为目标类型专用的创建函数（或指令），以确保完成全部内存分配和相关属性的初始化。
+当然new函数也可以为引用类型分配内存，但这是不完整创建。以字典（dict）为例，new仅仅分配了字典类型本身（实际就是一个指针包装）所需内存，并没有分配键值对的存储内存，没有初始化散列桶的内部属性，因此它无法正常工作。
+自增、自减不再是运算符。只能作为独立语句，不能用于表达式。
+指针（pointer）与内存地址是不同的，内存地址是内存中每个字节单元的唯一编号，而指针则是一个实体。指针会分配内存空间，相当于一个专门用来保存地址的整型变量。
+函数 Function 函数：结构化编程的最小模块单元。
+ 逻辑划分、抽象、任务分解 代码复用 方便测试  函数调用前，会为形参和返回值分配内存空间，并将实参拷贝至形参的内存。
+闭包（closure）是在其词法上下文引用了自由变量的函数，或者说是函数和其引用的环境的组合体。正因为闭包通过指针引用环境中的变量，那么可能导致其生命周期延长，甚至被分配到堆内存。
+数据 Data 字符串是不可变字节（byte）序列，其本身是一个复合结构。
+type stringStruct struct { str unsafe.Pointer len int }  动态构建字符串容易引起性能问题，因为字符串是不可变字节（byte）序列，在用加法操作法拼接字符串时，每次都须重新分配内存。改进思路是预分配足够的内存。可以使用strings.Join函数或者使用bytes.Buffer与分配内存空间。
+切片（slice）本身并非动态数组或数组指针。它内部通过指针引用底层数组，设定相关属性将数据读写操作限定在制定区域内。切片本身只是一个只读对象，其工作机制类似于数组指针的一种包装。
+type slice struct { array unsafe.Pointer len int cap int }  字典（Dict）是无须键值对集合，是迭代安全的，不是并发安全的。
+结构体（struct）将多个不同类型的命名字段（field）序列打包成一个复合类型。
+方法 Method 方法是与对象实例绑定的特殊函数。receiver的类型可以是基础类型或者指针类型，主要关系到调用对象时对象实例是否会被复制。
+receiver类型的选择：
+ 大对象建议用*T，以减少复制成本。 引用类型、字符串、函数等指针包装对象，直接用T 若包含Mutex等同步字段，用*T，避免因复制造成的锁失效。  接口 Interface 接口代表一种调用契约，是多个方法声明的集合。
+并发 Concurrency 关键字go创建一个并发任务单元。新建任务被放置在系统队列中，等待调度器安排合适的系统线程去执行。</description>
     </item>
     
   </channel>

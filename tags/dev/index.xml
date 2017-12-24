@@ -6,8 +6,11 @@
     <description>Recent content in Dev on Madiks&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <copyright>All rights reserved.&lt;br&gt;Powered by [Hugo](//gohugo.io/) with the [Type Theme](//github.com/digitalcraftsman/hugo-type-theme)</copyright>
     <lastBuildDate>Wed, 27 Sep 2017 21:22:14 +0800</lastBuildDate>
-    <atom:link href="https://madiks.github.io/tags/dev/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://madiks.github.io/tags/dev/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>从零搭建LNMP开发环境</title>
@@ -15,262 +18,18 @@
       <pubDate>Wed, 27 Sep 2017 21:22:14 +0800</pubDate>
       
       <guid>https://madiks.github.io/post/build-vagrant-lnmp-sde/</guid>
-      <description>
-
-&lt;p&gt;在Mac从零搭建PHP7开发环境，由于我不想直接在本地环境下直接操作所以使用Vagrant+VirtualBox在虚拟机来搭建开发环境，这样可以不用考虑开发环境各种配置对于本机的影响。&lt;/p&gt;
-
-&lt;p&gt;关于Vagrant可以参考这两篇文章：&lt;a href=&#34;http://www.ituring.com.cn/article/131600&#34;&gt;为什么要使用Vagrant&lt;/a&gt;和&lt;a href=&#34;https://segmentfault.com/a/1190000000264347&#34;&gt;Vagrant使用简介&lt;/a&gt;我就不多做解释了。&lt;/p&gt;
-
-&lt;p&gt;如果你不想自己手动搭建整个环境可以直接使用&lt;a href=&#34;https://github.com/laravel/homestead&#34;&gt;Laravel Homestead&lt;/a&gt;，这是由Laravel框架开发者提供的一个已搭建好的跨平台（Windows、 Mac、 Linux）的PHP开发环境，内置了如Nginx、PHP7、 MySQL、 Postgres、 Redis、 Memcached、 Node等服务，只需在Vagrant下载入box文件做到了开箱即用。&lt;/p&gt;
-
-&lt;p&gt;绕了半天还是回归正题，从零搭建PHP7开发环境：&lt;/p&gt;
-
-&lt;h4 id=&#34;初始化虚拟环境&#34;&gt;初始化虚拟环境&lt;/h4&gt;
-
-&lt;p&gt;这里假设你已经在本机安装好了VirtualBox+Vagrant，进入自己的想要存放环境的目录并在终端下执行如下命令：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mkdir trusty64 &amp;amp;&amp;amp; cd trusty64 # 创建并进入存放虚拟机的目录
-vagrant init ubuntu/trusty64 # 使用Vagrant载入Ubuntu 14.04的box文件
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上面的命令会从外网下载Ubuntu 14.04的box文件，所以会比较慢，需要耐心等待。执行成功后编辑trusty64目录下的Vagrantfile配置文件来修改一些虚拟机的配置。&lt;/p&gt;
-
-&lt;p&gt;由于网络原因box文件的下载可能出错，所以我这里提供我已下载的&lt;a href=&#34;http://pan.baidu.com/s/1o8wWWqQ&#34;&gt;Vagrant Ubuntu 14.04 Box&lt;/a&gt;文件给大家，可以直接在&lt;code&gt;trusty64&lt;/code&gt;目录下使用如下命令载入:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;vagrant box add phpdev ubuntu-trusty64-20170831.box
-vagrant init
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h5 id=&#34;调整虚拟机配置&#34;&gt;调整虚拟机配置&lt;/h5&gt;
-
-&lt;p&gt;我习惯将配置文件中&lt;code&gt;config.vm.box_check_update = true&lt;/code&gt;修改为&lt;code&gt;config.vm.box_check_update = false&lt;/code&gt;，这样每次启动虚拟机就不会检查box文件是否有更新了。&lt;/p&gt;
-
-&lt;p&gt;Vagrant 默认是使用端口映射方式将虚拟机的端口映射本地从而实现类似 &lt;a href=&#34;http://localhost:80&#34;&gt;http://localhost:80&lt;/a&gt; 这种访问方式，我更喜欢以固定IP的方式访问虚拟机，修改配置：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;config.vm.network :private_network, ip: &amp;quot;192.168.99.64&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这样启动虚拟机后我们就能用 192.168.99.64 访问这台机器了，你可以把IP改成其他地址，只要冲突就行。&lt;/p&gt;
-
-&lt;p&gt;默认Vagrant是把当前目录即&lt;code&gt;trusty64&lt;/code&gt;映射到虚拟机的&lt;code&gt;/vagrant&lt;/code&gt;目录下，你可以改变这个配置：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;config.vm.synced_folder &#39;.&#39;, &#39;/vagrant&#39;, disabled: true
-config.vm.synced_folder &amp;quot;./PHPCode&amp;quot; , &amp;quot;/code&amp;quot;, :mount_options =&amp;gt; [&amp;quot;dmode=777&amp;quot;, &amp;quot;fmode=666&amp;quot;]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上面第一行关闭默认的目录映射，第二行将当前目录下的&lt;code&gt;PHPCode&lt;/code&gt;映射到虚拟机的&lt;code&gt;/code&lt;/code&gt;目录下。&lt;/p&gt;
-
-&lt;h5 id=&#34;启动虚拟机&#34;&gt;启动虚拟机&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;vagrant up # 启动虚拟机
-vagrant ssh # ssh登陆虚拟机
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;OK，现在咱们就有了一个纯净的Ubuntu 14.04的虚拟环境，接下来开始配置开发环境吧。&lt;/p&gt;
-
-&lt;h4 id=&#34;配置开发环境&#34;&gt;配置开发环境&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;sudo su # 切换为root用户
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;首先切换为root用户，因为后面有些安装步骤需要用到超级用户权限，我们在本地虚拟机配置开发环境对于安全性的要求没那么严格，所以这里直接切换成root用户减少麻烦。&lt;/p&gt;
-
-&lt;h5 id=&#34;安装nginx&#34;&gt;安装Nginx&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;apt-get update # 更新软件源
-apt-get install nginx
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;安装完成之后在本机直接访问&lt;code&gt;http://192.168.99.64/&lt;/code&gt;，可以看到&lt;code&gt;Welcome to nginx!&lt;/code&gt;的页面表示nginx安装成功。&lt;/p&gt;
-
-&lt;h4 id=&#34;编译安装php&#34;&gt;编译安装PHP&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;apt-get install build-essential libtool libpcre3 libpcre3-dev openssl libssl-dev
-apt-get install libxml2-dev libcurl4-gnutls-dev libjpeg-dev libpng-dev libmcrypt-dev libreadline6 libreadline6-dev libfreetype6-dev
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;安装一些编译要用到的包。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;ln -s /lib/x86_64-linux-gnu/libssl.so.1.0.0 /usr/lib/libssl.so
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决缺少了openssl的问题。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;tar zxvf php-7.1.9.tar.gz
-cd php-7.1.9
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;下载PHP7的源码包，并解压。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;./configure --prefix=/usr/local/php --with-config-file-path=/usr/local/php/etc --enable-fpm --with-fpm-user=www-data --with-fpm-group=www-data --with-mysqli --with-pdo-mysql --with-iconv-dir --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --with-curl --enable-mbregex --enable-mbstring --with-mcrypt --enable-ftp --with-gd --enable-gd-native-ttf --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap --without-pear --with-gettext --disable-fileinfo --enable-maintainer-zts
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;配置PHP编译选项。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;make # 编译
-make install # 安装
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这样PHP将被安装到&lt;code&gt;/usr/local/php&lt;/code&gt;目录，编辑&lt;code&gt;/etc/enviornment&lt;/code&gt;， 将&lt;code&gt;/usr/local/php/bin&lt;/code&gt;添加到&lt;code&gt;PATH&lt;/code&gt; 变量，然后在终端执行&lt;code&gt;source /etc/environment&lt;/code&gt;更新环境变量。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cp &amp;lt;php-source-dir&amp;gt;/php.ini-development /usr/local/php/etc/php.ini
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;配置php.ini文件。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;php -v
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;验证PHP安装成功。&lt;/p&gt;
-
-&lt;h4 id=&#34;配置php-fpm&#34;&gt;配置PHP-FPM&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cp /usr/local/php/etc/php-fpm.conf.default /usr/local/php/etc/php-fpm.conf
-cp /usr/local/php/etc/php-fpm.d/www.conf.default /usr/local/php/etc/php-fpm.d/www.conf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;拷贝创建FPM配置文件，并修改&lt;code&gt;/usr/local/php/etc/php-fpm.d/www.conf&lt;/code&gt;部分配置如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;; listen = 127.0.0.1:9000
-listen = /var/run/php-fpm.sock
-; unix socket
-
-listen.owner = www-data
-listen.group = www-data
-listen.mode = 0660
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h5 id=&#34;初始化php-fpm服务脚本&#34;&gt;初始化PHP-FPM服务脚本&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cp &amp;lt;source-dir&amp;gt;/sapi/fpm/init.d.php-fpm.in /etc/init.d/php-fpm
-chmod 755 /etc/init.d/php-fpm
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://php.net/manual/en/install.fpm.php&#34;&gt;FPM Installation and Configuration&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;修改部分&lt;code&gt;/etc/init.d/php-fpm&lt;/code&gt;为如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;prefix=
-exec_prefix=
-php_fpm_BIN=/usr/local/php/sbin/php-fpm
-php_fpm_CONF=/usr/local/php/etc/php-fpm.conf
-php_fpm_PID=/var/run/php-fpm.pid
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h5 id=&#34;启动php-fpm服务&#34;&gt;启动PHP-FPM服务&lt;/h5&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;/etc/init.d/php-fpm start # start php-fpm
-# /etc/init.d/php-fpm stop
-# /etc/init.d/php-fpm reload
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;编辑&lt;code&gt;/etc/rc.local&lt;/code&gt;文件，在开机启动中加入PHP-FPM服务：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/etc/init.d/php-fpm start
-···
-exit 0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;至此PHP-FPM配置成功。&lt;/p&gt;
-
-&lt;h4 id=&#34;创建phpinfo-脚本&#34;&gt;创建phpinfo()脚本&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;vim /etc/nginx/sites-available/trusty64
-ln -s /etc/nginx/sites-available/trusty64 /etc/nginx/sites-enabled/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;创建Nginx虚拟主机配置文件，并在中输入一下内容：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-nginx&#34;&gt;server {
-        listen 80;
-        server_name trusty64.local; # 设置域名
-        charset UTF-8;
-        # 配置访问日志和错误日志
-        access_log /var/log/trusty64-access.log;
-        error_log /var/log/trusty64-error.log;
-        # 站点根目录
-        root /code/www/trusty64/public;
-
-        index index.php index.html;
-
-        location = /favicon.ico {
-                log_not_found off;
-                access_log off;
-        }
-
-        location ~ \.php$ {
-                #fastcgi_pass   127.0.0.1:9000;
-                fastcgi_pass   unix:/var/run/php-fpm.sock;
-                fastcgi_index  index.php;
-                fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
-                fastcgi_read_timeout 5000;
-                include        fastcgi_params;
-        }
-
-        location ~ /\.ht {
-                deny all;
-        }
-
-        # Prevents caching of css/less/js/images, only use this in development
-        location ~* \.(css|less|js|jpg|png|gif)$ {
-                add_header Cache-Control &amp;quot;no-cache, no-store, must-revalidate&amp;quot;; 
-                add_header Pragma &amp;quot;no-cache&amp;quot;;
-                expires 0;
-        }
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;在虚拟机&lt;code&gt;/code/www/trusty64/public&lt;/code&gt;目录（位于映射的共享目录下）下创建&lt;code&gt;index.php&lt;/code&gt;，输入一下内容：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-php&#34;&gt;&amp;lt;?php
-    phpinfo();
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;重启nginx，使配置的虚拟主机生效&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;service nginx restart #
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;修改本机（不是虚拟机）的&lt;code&gt;/etc/hosts&lt;/code&gt;文件添加&lt;code&gt;trusty64.local&lt;/code&gt;的域名解析：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;192.168.99.64 trusty64.local
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;打开本机浏览器访问&lt;code&gt;http://trusty64.local/&lt;/code&gt;可以看到&lt;code&gt;phpinfo()&lt;/code&gt;的输出，Nginx+PHP-FPM的开发环境已配置成功。&lt;/p&gt;
-
-&lt;h4 id=&#34;安装mysql&#34;&gt;安装Mysql&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;apt-get install mysql-server mysql-client
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;注意在提示时输入root密码，安装完成后登陆Mysql为本机配置数据库访问权限。&lt;/p&gt;
-
-&lt;p&gt;修改Mysql配置文件：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;vim /etc/mysql/my.cnf
-# 把bind-address参数的值改成你的内/外网IP或0.0.0.0,或者直接注释掉这行.
-# 重启Mysql使配置生效
-service mysql stop
-service mysql start
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;登陆Mysql为本机IP添加访问权限。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;mysql -u root -p
-
-mysql&amp;gt; use mysql;
-mysql&amp;gt; update user set host=&#39;192.168.99.1&#39; where user=&#39;root&#39;;
-mysql&amp;gt; flush privileges;
-mysql&amp;gt; select user,host from user;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;然后就可以直接使用本机的数据库管理工具如&lt;code&gt;Navicat&lt;/code&gt;连接&lt;code&gt;192.168.99.64&lt;/code&gt;访问和管理虚拟机上的Mysql。&lt;/p&gt;
-
-&lt;h4 id=&#34;总结&#34;&gt;总结&lt;/h4&gt;
-
-&lt;p&gt;至此我们在Vagrant的Ubuntu 14.04下搭建了LNMP的开发环境，可以在本机上直接编辑映射的共享目录下的脚本文件，通过虚拟来进行测试，做到开发与测试环境隔离，不必担心在本地搭建过多的服务引起的混乱。&lt;/p&gt;
-</description>
+      <description>在Mac从零搭建PHP7开发环境，由于我不想直接在本地环境下直接操作所以使用Vagrant+VirtualBox在虚拟机来搭建开发环境，这样可以不用考虑开发环境各种配置对于本机的影响。
+关于Vagrant可以参考这两篇文章：为什么要使用Vagrant和Vagrant使用简介我就不多做解释了。
+如果你不想自己手动搭建整个环境可以直接使用Laravel Homestead，这是由Laravel框架开发者提供的一个已搭建好的跨平台（Windows、 Mac、 Linux）的PHP开发环境，内置了如Nginx、PHP7、 MySQL、 Postgres、 Redis、 Memcached、 Node等服务，只需在Vagrant下载入box文件做到了开箱即用。
+绕了半天还是回归正题，从零搭建PHP7开发环境：
+初始化虚拟环境 这里假设你已经在本机安装好了VirtualBox+Vagrant，进入自己的想要存放环境的目录并在终端下执行如下命令：
+mkdir trusty64 &amp;amp;&amp;amp; cd trusty64 # 创建并进入存放虚拟机的目录 vagrant init ubuntu/trusty64 # 使用Vagrant载入Ubuntu 14.04的box文件  上面的命令会从外网下载Ubuntu 14.04的box文件，所以会比较慢，需要耐心等待。执行成功后编辑trusty64目录下的Vagrantfile配置文件来修改一些虚拟机的配置。
+由于网络原因box文件的下载可能出错，所以我这里提供我已下载的Vagrant Ubuntu 14.04 Box文件给大家，可以直接在trusty64目录下使用如下命令载入:
+vagrant box add phpdev ubuntu-trusty64-20170831.box vagrant init  调整虚拟机配置 我习惯将配置文件中config.vm.box_check_update = true修改为config.vm.box_check_update = false，这样每次启动虚拟机就不会检查box文件是否有更新了。
+Vagrant 默认是使用端口映射方式将虚拟机的端口映射本地从而实现类似 http://localhost:80 这种访问方式，我更喜欢以固定IP的方式访问虚拟机，修改配置：
+config.vm.network :private_network, ip: &amp;quot;192.168.99.64&amp;quot;  这样启动虚拟机后我们就能用 192.168.99.64 访问这台机器了，你可以把IP改成其他地址，只要冲突就行。
+默认Vagrant是把当前目录即trusty64映射到虚拟机的/vagrant目录下，你可以改变这个配置：
+config.vm.synced_folder &#39;.&#39;, &#39;/vagrant&#39;, disabled: true config.vm.synced_folder &amp;quot;./PHPCode&amp;quot; , &amp;quot;/code&amp;quot;, :mount_options =&amp;gt; [&amp;quot;dmode=777&amp;quot;, &amp;quot;fmode=666&amp;quot;]  上面第一行关闭默认的目录映射，第二行将当前目录下的PHPCode映射到虚拟机的/code目录下。</description>
     </item>
     
   </channel>

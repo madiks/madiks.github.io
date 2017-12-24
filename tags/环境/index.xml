@@ -6,8 +6,11 @@
     <description>Recent content in 环境 on Madiks&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <copyright>All rights reserved.&lt;br&gt;Powered by [Hugo](//gohugo.io/) with the [Type Theme](//github.com/digitalcraftsman/hugo-type-theme)</copyright>
     <lastBuildDate>Mon, 26 Jun 2017 22:32:33 +0800</lastBuildDate>
-    <atom:link href="https://madiks.github.io/tags/%E7%8E%AF%E5%A2%83/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://madiks.github.io/tags/%E7%8E%AF%E5%A2%83/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>外部世界如何认识你</title>
@@ -15,20 +18,11 @@
       <pubDate>Mon, 26 Jun 2017 22:32:33 +0800</pubDate>
       
       <guid>https://madiks.github.io/post/how-world-know-you/</guid>
-      <description>
-
-&lt;h3 id=&#34;世界与别人如何了解你&#34;&gt;世界与别人如何了解你&lt;/h3&gt;
-
-&lt;p&gt;一些整天在接触甚至整天在使用但却被忽视的东西。&lt;/p&gt;
-
-&lt;p&gt;your action is how the world reflect you.&lt;/p&gt;
-
-&lt;p&gt;别人与世界对你的认识是建立在你所做的事和你的行动上的，是从特定视角观察来的。你内在的很多东西不表现出来是毫无用处的，是不能为人所知的，无法让你认识你的。&lt;/p&gt;
-
-&lt;p&gt;所以，其实内向的人朋友少不是没有原因的：别人都没机会与你接触，也不能从你的行为来认识你，自然是没办法交朋友的。尝试开放一些，与人多交流，给别人认识你的机会。&lt;/p&gt;
-
-&lt;p&gt;how the world know you is depend on what you have done and how you act yourself.&lt;/p&gt;
-</description>
+      <description>世界与别人如何了解你 一些整天在接触甚至整天在使用但却被忽视的东西。
+your action is how the world reflect you.
+别人与世界对你的认识是建立在你所做的事和你的行动上的，是从特定视角观察来的。你内在的很多东西不表现出来是毫无用处的，是不能为人所知的，无法让你认识你的。
+所以，其实内向的人朋友少不是没有原因的：别人都没机会与你接触，也不能从你的行为来认识你，自然是没办法交朋友的。尝试开放一些，与人多交流，给别人认识你的机会。
+how the world know you is depend on what you have done and how you act yourself.</description>
     </item>
     
     <item>
@@ -37,16 +31,9 @@
       <pubDate>Sun, 02 Apr 2017 22:52:33 +0800</pubDate>
       
       <guid>https://madiks.github.io/post/about-atmosphere/</guid>
-      <description>
-
-&lt;h3 id=&#34;人生的环境论&#34;&gt;人生的环境论&lt;/h3&gt;
-
-&lt;p&gt;在职业生涯中有很多因素影响自己的前进与发展，像环境、运气、机遇等超出个人控制的因素太多，想要提升个人的发展只能从可控因素下手，即做好自身相关的方面，如技术实力、解决问题的能力、做事的态度等等。&lt;/p&gt;
-
-&lt;p&gt;我觉得个人自身自身与外界就像两个环境系统，一大一小，这俩者既有联系（大环境的变化很容易影响小环境）又有隔离（小环境的变化很难反馈到大环境或者说这种影响对大环境来说太渺小了），一个人能否成功由这两个环境系统共同决定。而个人可控的只有自我这个小环境，所以做好自己，“但行好事”才是人生成长的关键。&lt;/p&gt;
-
-&lt;p&gt;我现在还说不好工作到底为了什么，但是工作态度已经比较明晰了：做事、做成事、解决问题。但行好事，亦问前程。&lt;/p&gt;
-</description>
+      <description>人生的环境论 在职业生涯中有很多因素影响自己的前进与发展，像环境、运气、机遇等超出个人控制的因素太多，想要提升个人的发展只能从可控因素下手，即做好自身相关的方面，如技术实力、解决问题的能力、做事的态度等等。
+我觉得个人自身自身与外界就像两个环境系统，一大一小，这俩者既有联系（大环境的变化很容易影响小环境）又有隔离（小环境的变化很难反馈到大环境或者说这种影响对大环境来说太渺小了），一个人能否成功由这两个环境系统共同决定。而个人可控的只有自我这个小环境，所以做好自己，“但行好事”才是人生成长的关键。
+我现在还说不好工作到底为了什么，但是工作态度已经比较明晰了：做事、做成事、解决问题。但行好事，亦问前程。</description>
     </item>
     
   </channel>

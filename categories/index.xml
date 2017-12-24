@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Madiks&#39;s blog</title>
+    <link>https://madiks.github.io/categories/</link>
+    <description>Recent content in Categories on Madiks&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>All rights reserved.&lt;br&gt;Powered by [Hugo](//gohugo.io/) with the [Type Theme](//github.com/digitalcraftsman/hugo-type-theme)</copyright>
+    
+	<atom:link href="https://madiks.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Database</title>
+      <link>https://madiks.github.io/categories/database/</link>
+      <pubDate>Sat, 26 Nov 2016 23:12:13 +0800</pubDate>
+      
+      <guid>https://madiks.github.io/categories/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>https://madiks.github.io/categories/golang/</link>
+      <pubDate>Wed, 03 May 2017 15:10:47 +0800</pubDate>
+      
+      <guid>https://madiks.github.io/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Interview</title>
+      <link>https://madiks.github.io/categories/interview/</link>
+      <pubDate>Thu, 07 Sep 2017 16:30:23 +0800</pubDate>
+      
+      <guid>https://madiks.github.io/categories/interview/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Life</title>
+      <link>https://madiks.github.io/categories/life/</link>
+      <pubDate>Mon, 26 Jun 2017 22:32:33 +0800</pubDate>
+      
+      <guid>https://madiks.github.io/categories/life/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Photography</title>
+      <link>https://madiks.github.io/categories/photography/</link>
+      <pubDate>Wed, 28 Jun 2017 21:12:13 +0800</pubDate>
+      
+      <guid>https://madiks.github.io/categories/photography/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Php</title>
+      <link>https://madiks.github.io/categories/php/</link>
+      <pubDate>Wed, 27 Sep 2017 21:22:14 +0800</pubDate>
+      
+      <guid>https://madiks.github.io/categories/php/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

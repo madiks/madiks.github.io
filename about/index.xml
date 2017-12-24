@@ -6,8 +6,11 @@
     <description>Recent content in Abouts on Madiks&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <copyright>All rights reserved.&lt;br&gt;Powered by [Hugo](//gohugo.io/) with the [Type Theme](//github.com/digitalcraftsman/hugo-type-theme)</copyright>
     <lastBuildDate>Sat, 23 Jul 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://madiks.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://madiks.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>About</title>
@@ -15,14 +18,8 @@
       <pubDate>Sat, 23 Jul 2016 00:00:00 +0000</pubDate>
       
       <guid>https://madiks.github.io/about/</guid>
-      <description>
-
-&lt;h3 id=&#34;关于我&#34;&gt;关于我&lt;/h3&gt;
-
-&lt;p&gt;91年出生的程序员，喜欢看书、美剧、电影和画画（水平不高但也算一兴趣），有时看得东西多了也想写一写自己不成熟的想法，微博&lt;a href=&#34;http://weibo.com/2027185427&#34;&gt;@Adiks&lt;/a&gt;。&lt;/p&gt;
-
-&lt;p&gt;- updated at 2017年9月3日&lt;/p&gt;
-</description>
+      <description>关于我 91年出生的程序员，喜欢看书、美剧、电影和画画（水平不高但也算一兴趣），有时看得东西多了也想写一写自己不成熟的想法，微博@Adiks。
+- updated at 2017年9月3日</description>
     </item>
     
   </channel>
