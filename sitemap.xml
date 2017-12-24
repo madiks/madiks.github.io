@@ -84,13 +84,13 @@
   </url>
   
   <url>
-    <loc>https://madiks.github.io/categories/database/</loc>
+    <loc>https://madiks.github.io/tags/database/</loc>
     <lastmod>2016-11-26T23:12:13+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://madiks.github.io/tags/database/</loc>
+    <loc>https://madiks.github.io/categories/database/</loc>
     <lastmod>2016-11-26T23:12:13+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -108,25 +108,25 @@
   </url>
   
   <url>
-    <loc>https://madiks.github.io/categories/golang/</loc>
-    <lastmod>2017-05-03T15:10:47+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://madiks.github.io/tags/golang/</loc>
     <lastmod>2017-05-03T15:10:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://madiks.github.io/categories/interview/</loc>
-    <lastmod>2017-09-07T16:30:23+08:00</lastmod>
+    <loc>https://madiks.github.io/categories/golang/</loc>
+    <lastmod>2017-05-03T15:10:47+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://madiks.github.io/tags/interview/</loc>
+    <lastmod>2017-09-07T16:30:23+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://madiks.github.io/categories/interview/</loc>
     <lastmod>2017-09-07T16:30:23+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -168,13 +168,13 @@
   </url>
   
   <url>
-    <loc>https://madiks.github.io/categories/php/</loc>
+    <loc>https://madiks.github.io/tags/php/</loc>
     <lastmod>2017-09-27T21:22:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://madiks.github.io/tags/php/</loc>
+    <loc>https://madiks.github.io/categories/php/</loc>
     <lastmod>2017-09-27T21:22:14+08:00</lastmod>
     <priority>0</priority>
   </url>
